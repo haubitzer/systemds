@@ -32,15 +32,6 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
          Integer most_weighty_nan_gap
          )
 {
-    length_series = 0;
-    number_nans = 0;
-    percentage_nans = 0;
-    number_nan_gaps = 0;
-    average_size_nan_gaps = 0;
-    longest_nan_gap = 0;
-    most_frequent_nan_gap = 0;
-    most_weighty_nan_gap = 0;
-
     #TODO Question: Do we need to check if the input matrix in a vector? and if yes in with direction should it go?
     if(ncol(X) != 1) {
        stop("CONFUSION MATRIX: expect a matrix with only one column");
