@@ -19,7 +19,7 @@
 #
 #-------------------------------------------------------------
 
-# TODO Question: Is there a tool/template to generate the function documentation? Does it goes automatically on the website?
+# TODO Question: Is there a tool/template to generate the function documentation? Who updates the documentation on the website?
 
 m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = TRUE)
   return(Integer length_series,
@@ -43,11 +43,11 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
 
     #TODO Question: Do we need to check if the input matrix in a vector? and if yes in with direction should it go?
     if(ncol(X) != 1) {
-       # TODO Question: How to return early?
        stop("CONFUSION MATRIX: expect a matrix with only one column");
     }
 
     # Count total entries
+    # TODO Question: Why returns length a double and not an integer?
     length_series = length(X);
 
     # TODO Question: What should happen when the input matrix is empty?
@@ -61,7 +61,7 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     }
 
     # Count NaNs
-    # TODO Question: Is there a style guide for private variable?
+    # TODO Question: Is there a style guide for private or return variables?
     # TODO Question: Why didn't I find any documentation for "is.nan" ?
     p_position_nans = replace(target= X * 0, pattern = NaN, replacement = 1)
     number_nans = sum(p_position_nans);
@@ -97,14 +97,14 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
 
     # Find longest gap
     longest_nan_gap = NaN
-    # TODO Question: is there a break from an loop, so we could loop reverse? If not this can be written as a while loop
+    # TODO Question: Why is there no "break" keyword? If not this can be written as a while loop
     for(i in 1:length_series){
         if (as.scalar(p_gaps_vector[i,1]) > 0) {
             longest_nan_gap = i;
         }
     }
 
-    # TODO Question: is the compiler smart enough that this two for loops can be merged? Does this even matter?
+    # TODO Question: is the compiler smart enough that these two for loops can be merged? or does this even matter?
     # Find most frequent gap size
     most_frequent_nan_gap = 0;
     p_most_frequent_nan_gap_max_number = 0;
