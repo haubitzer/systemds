@@ -32,7 +32,7 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
          Integer most_weighty_nan_gap
          )
 {
-    #TODO Question: Do we need to check if the input matrix in a vector? and if yes in with direction should it go?
+    #TODO Question: Do we need to check if the input matrix is a vector? and if yes in with direction should it go?
     if(ncol(X) != 1) {
        stop("CONFUSION MATRIX: expect a matrix with only one column");
     }
@@ -46,7 +46,7 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
        stop("EMPTY MATRIX")
     }
 
-    # TODO Question: What should happen when the number of bins are higher the length of the input matrix?
+    # TODO Question: What should happen when the number of bins is higher than length of the input matrix?
     if (length_series < bins) {
         bins = length_series;
     }
@@ -63,9 +63,8 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     # Create Vector with numbers of gas
     p_gaps_vector = matrix(0, length_series, 1);
     p_length_of_gap = 0;
-    # TODO Question: is there a better way for this loop?
      for (i in 1:length_series) {
-        #TODO Question: Is there a nicer way for that? I don't want wo always write as.scalar
+        #TODO Question: Is there a way to compare these two values without as.scalar?
          if (as.scalar(p_position_nans[i,1]) == 1) {
             p_length_of_gap += 1;
          } else if (p_length_of_gap != 0){
@@ -83,23 +82,24 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     number_nan_gaps = sum(p_gaps_vector);
 
     # Calculate average gap size
-    # TODO see whats happen when we dived by zero? WTF 1/0 is Infinity and 0/0 is NaN
+    # WTF 1/0 is Infinity and 0/0 is NaN
     average_size_nan_gaps = number_nans / number_nan_gaps
 
     # Find longest gap
     longest_nan_gap = NaN
-    # TODO Question: Why is there no "break" keyword? If not this can be written as a while loop
+    # TODO Question: Why is there no "break" keyword?
+    # TODO Question: refactor into a while loop
     for(i in 1:length_series){
         if (as.scalar(p_gaps_vector[i,1]) > 0) {
             longest_nan_gap = i;
         }
     }
 
-    # TODO Question: is the compiler smart enough that these two for loops can be merged? or does this even matter?
+    # TODO Question: is the compiler smart enough that these two for loops can be merged? Does this even matter in our case?
     # Find most frequent gap size
     most_frequent_nan_gap = 0;
     p_most_frequent_nan_gap_max_number = 0;
-    # TODO Question: is there something like argmax? https://numpy.org/doc/stable/reference/generated/numpy.argmax.html
+    # TODO Question: Is there something like argmax? https://numpy.org/doc/stable/reference/generated/numpy.argmax.html
     for(i in 1:length_series) {
         tmp_value = as.scalar(p_gaps_vector[i,1]);
         if(tmp_value > p_most_frequent_nan_gap_max_number) {
@@ -137,10 +137,6 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
         bins_end[i,1] = tmp_splitter;
     }
 
-    # TODO Question: Is it a good idea to have the the variable declaration before the for loop?  i think some language pref it that way.
-    start = 0;
-    end = 0;
-    tmp_nans = 0;
     for(i in 1:bins) {
         start = as.scalar(bins_start[i,1]);
         end = as.scalar(bins_end[i,1]);
