@@ -80,8 +80,24 @@ public class BuiltinStatsNATest extends AutomatedTestBase {
             HashMap<MatrixValue.CellIndex, Double> dmlfileO6 = readDMLScalarFromOutputDir("O6");
             HashMap<MatrixValue.CellIndex, Double> dmlfileO7 = readDMLScalarFromOutputDir("O7");
             HashMap<MatrixValue.CellIndex, Double> dmlfileO8 = readDMLScalarFromOutputDir("O8");
-            //HashMap<MatrixValue.CellIndex, Double> rfile = readRMatrixFromExpectedDir("O");
-            //TestUtils.compareMatrices(dmlfile, rfile, eps, "Stat-DML", "Stat-R");
+
+            HashMap<MatrixValue.CellIndex, Double> rfileO1 = readRScalarFromExpectedDir("O1");
+            HashMap<MatrixValue.CellIndex, Double> rfileO2 = readRScalarFromExpectedDir("O2");
+            HashMap<MatrixValue.CellIndex, Double> rfileO3 = readRScalarFromExpectedDir("O3");
+            HashMap<MatrixValue.CellIndex, Double> rfileO4 = readRScalarFromExpectedDir("O4");
+            HashMap<MatrixValue.CellIndex, Double> rfileO5 = readRScalarFromExpectedDir("O5");
+            HashMap<MatrixValue.CellIndex, Double> rfileO6 = readRScalarFromExpectedDir("O6");
+            HashMap<MatrixValue.CellIndex, Double> rfileO7 = readRScalarFromExpectedDir("O7");
+            HashMap<MatrixValue.CellIndex, Double> rfileO8 = readRScalarFromExpectedDir("O8");
+
+            TestUtils.compareMatrices(dmlfileO1, rfileO1, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO2, rfileO2, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO3, rfileO3, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO4, rfileO4, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO5, rfileO5, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO6, rfileO6, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO7, rfileO7, eps, "Stat-DML", "Stat-R");
+            TestUtils.compareMatrices(dmlfileO8, rfileO8, eps, "Stat-DML", "Stat-R");
         /*}
         finally {
             rtplatform = platformOld;
