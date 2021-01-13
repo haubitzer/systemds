@@ -90,6 +90,19 @@ public class BuiltinStatsNATest extends AutomatedTestBase {
             HashMap<MatrixValue.CellIndex, Double> rfileO7 = readRScalarFromExpectedDir("O7");
             HashMap<MatrixValue.CellIndex, Double> rfileO8 = readRScalarFromExpectedDir("O8");
 
+            MatrixValue.CellIndex key_ce = new MatrixValue.CellIndex(1,1);
+
+            TestUtils.compareScalars(dmlfileO1.get(key_ce),rfileO1.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO2.get(key_ce),rfileO2.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO3.get(key_ce),rfileO3.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO4.get(key_ce),rfileO4.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO5.get(key_ce),rfileO5.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO6.get(key_ce),rfileO6.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO7.get(key_ce),rfileO7.get(key_ce),eps);
+            TestUtils.compareScalars(dmlfileO8.get(key_ce),rfileO8.get(key_ce),eps);
+
+
+            /*
             TestUtils.compareMatrices(dmlfileO1, rfileO1, eps, "Stat-DML", "Stat-R");
             TestUtils.compareMatrices(dmlfileO2, rfileO2, eps, "Stat-DML", "Stat-R");
             TestUtils.compareMatrices(dmlfileO3, rfileO3, eps, "Stat-DML", "Stat-R");
@@ -98,6 +111,7 @@ public class BuiltinStatsNATest extends AutomatedTestBase {
             TestUtils.compareMatrices(dmlfileO6, rfileO6, eps, "Stat-DML", "Stat-R");
             TestUtils.compareMatrices(dmlfileO7, rfileO7, eps, "Stat-DML", "Stat-R");
             TestUtils.compareMatrices(dmlfileO8, rfileO8, eps, "Stat-DML", "Stat-R");
+             */
         /*}
         finally {
             rtplatform = platformOld;

@@ -13,7 +13,7 @@ O1=O["length_series"][[1]]
 O2=O["number_NAs"][[1]]
 O3=O["number_na_gaps"][[1]]
 O4=O["average_size_na_gaps"][[1]]
-O5=O["percentage_NAs"][[1]]
+O5=as.numeric(sub("%","",O["percentage_NAs"][[1]],fixed=TRUE))/100
 O6=O["longest_na_gap"][[1]]
 O7=O["most_frequent_na_gap"][[1]]
 O8=O["most_weighty_na_gap"][[1]]
