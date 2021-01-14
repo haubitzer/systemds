@@ -48,10 +48,10 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     }
 
     if (length_series < bins) {
-        print("Warning");
+        print("Warning: bins was changed to 4");
         bins = 4;
     } else if (length_series < 4) {
-        print("Warning");
+        print("Warning: bin was changed to 1");
         bins = 1;
     }
 
@@ -83,21 +83,18 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     number_nan_gaps = sum(p_gaps_vector);
 
     # Calculate average gap size
-    # WTF 1/0 is Infinity and 0/0 is NaN
     average_size_nan_gaps = number_nans / number_nan_gaps
 
     # Find longest gap
     longest_nan_gap = 0
     i = length_series;
     # Reverse the vector in reverse to find longest gap
-
     while((longest_nan_gap == 0) & (i > 0)) {
         if (as.scalar(p_gaps_vector[i,1]) > 0) {
             longest_nan_gap = i;
         }
         i = i - 1;
     }
-
 
     # Find most frequent gap size
     most_frequent_nan_gap = as.scalar(rowIndexMax(t(p_gaps_vector)));
@@ -107,7 +104,7 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
     for(i in 1:length_series) {
         p_gaps_vector_with_weight[i, 1] = i * as.scalar(p_gaps_vector[i,1]);
     }
-    most_weighty_nan_gap = 0 #as.scalar(rowIndexMax(t(p_gaps_vector_with_weight)));
+    most_weighty_nan_gap = as.scalar(rowIndexMax(t(p_gaps_vector_with_weight)));
 
     # Calculate bins
     #---
@@ -131,9 +128,8 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
         end = as.scalar(bins_end[i,1]);
         tmp_nans = sum(p_position_nans[start:end, 1]);
 
-        # TODO BUG
-        # bins_nans[i,1] = tmp_nans;
-        # bins_percentage[i,1] = tmp_nans / bin_length;
+        bins_nans[i,1] = tmp_nans;
+        bins_percentage[i,1] = tmp_nans / bin_length;
     }
     #---
 

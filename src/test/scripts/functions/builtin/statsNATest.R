@@ -8,34 +8,22 @@ input_matrix[input_matrix==0] = NA
 
 bins_in = as.numeric(args[2])
 
-O = statsNA(input_matrix, bins = bins_in, print_only = FALSE)
+Out = statsNA(input_matrix, bins = bins_in, print_only = FALSE)
 
+Out1=Out["length_series"][[1]]
+Out2=Out["number_NAs"][[1]]
+Out3=Out["number_na_gaps"][[1]]
+Out4=Out["average_size_na_gaps"][[1]]
+Out5=as.numeric(sub("%","",Out["percentage_NAs"][[1]],fixed=TRUE))/100
+Out6=Out["longest_na_gap"][[1]]
+Out7=Out["most_frequent_na_gap"][[1]]
+Out8=Out["most_weighty_na_gap"][[1]]
 
-O1=O["length_series"][[1]]
-O2=O["number_NAs"][[1]]
-O3=O["number_na_gaps"][[1]]
-O4=O["average_size_na_gaps"][[1]]
-O5=as.numeric(sub("%","",O["percentage_NAs"][[1]],fixed=TRUE))/100
-O6=O["longest_na_gap"][[1]]
-O7=O["most_frequent_na_gap"][[1]]
-O8=O["most_weighty_na_gap"][[1]]
-
-write(O1, paste(args[3], "O1", sep=""))
-write(O2, paste(args[3], "O2", sep=""))
-write(O3, paste(args[3], "O3", sep=""))
-write(O4, paste(args[3], "O4", sep=""))
-write(O5, paste(args[3], "O5", sep=""))
-write(O6, paste(args[3], "O6", sep=""))
-write(O7, paste(args[3], "O7", sep=""))
-write(O8, paste(args[3], "O8", sep=""))
-
-'
-print(O1)
-print(O2)
-print(O3)
-print(O4)
-print(O5)
-print(O6)
-print(O7)
-print(O8)
-'
+write(Out1, paste(args[3], "Out1", sep=""))
+write(Out2, paste(args[3], "Out2", sep=""))
+write(Out3, paste(args[3], "Out3", sep=""))
+write(Out4, paste(args[3], "Out4", sep=""))
+write(Out5, paste(args[3], "Out5", sep=""))
+write(Out6, paste(args[3], "Out6", sep=""))
+write(Out7, paste(args[3], "Out7", sep=""))
+write(Out8, paste(args[3], "Out8", sep=""))
