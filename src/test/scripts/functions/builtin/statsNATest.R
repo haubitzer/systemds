@@ -20,9 +20,6 @@ O6=O["longest_na_gap"][[1]]
 O7=O["most_frequent_na_gap"][[1]]
 O8=O["most_weighty_na_gap"][[1]]
 
-print(O)
-
-
 write(O1, paste(args[3], "O1", sep=""))
 write(O2, paste(args[3], "O2", sep=""))
 write(O3, paste(args[3], "O3", sep=""))
