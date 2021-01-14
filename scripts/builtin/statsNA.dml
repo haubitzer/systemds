@@ -24,9 +24,9 @@
 m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = TRUE)
   return(Integer length_series,
          Double number_nans,
-         Double percentage_nans,
          Double number_nan_gaps,
          Double average_size_nan_gaps,
+         Double percentage_nans,
          Integer longest_nan_gap,
          Double most_frequent_nan_gap,
          Double most_weighty_nan_gap
@@ -149,16 +149,16 @@ m_statsNA = function(Matrix[Double] X, Integer bins = 4, Boolean print_result = 
         print(number_nans);
         print("-------------------------");
 
-        print("Percentage of Missing Values:");
-        print("%3.2f %%", percentage_nans);
-        print("-------------------------");
-
         print("Number of Gaps:");
         print(number_nan_gaps);
         print("-------------------------");
 
         print("Average Gap Size:");
         print("%3.2f %%", average_size_nan_gaps);
+        print("-------------------------");
+
+        print("Percentage of Missing Values:");
+        print("%3.2f %%", percentage_nans);
         print("-------------------------");
 
         print("Longest NA gap (series of consecutive NAs)");

@@ -6,7 +6,9 @@ library("imputeTS")
 input_matrix = as.matrix(readMM(paste(args[1], "A.mtx", sep="")))
 input_matrix[input_matrix==0] = NA
 
-O = statsNA(input_matrix, bins = 4, print_only = FALSE)
+bins_in = as.numeric(args[2])
+
+O = statsNA(input_matrix, bins = bins_in, print_only = FALSE)
 
 
 O1=O["length_series"][[1]]
@@ -17,6 +19,9 @@ O5=as.numeric(sub("%","",O["percentage_NAs"][[1]],fixed=TRUE))/100
 O6=O["longest_na_gap"][[1]]
 O7=O["most_frequent_na_gap"][[1]]
 O8=O["most_weighty_na_gap"][[1]]
+
+print(O)
+
 
 write(O1, paste(args[3], "O1", sep=""))
 write(O2, paste(args[3], "O2", sep=""))
